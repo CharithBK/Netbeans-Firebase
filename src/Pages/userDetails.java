@@ -18,6 +18,8 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -312,7 +314,22 @@ public class userDetails extends javax.swing.JFrame {
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
         
+        Driver newDriver = new Driver();
         
+        newDriver.setName(txt_name.getText());
+        newDriver.setNic(txt_nic.getText());
+        newDriver.setAddress(txt_address.getText());
+        newDriver.setAge(Integer.parseInt(txt_age.getText()));
+        newDriver.setTelephone(Integer.parseInt(txt_telephone.getText()));
+        
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Drivers/DriverDetails");
+        Map<String, Object> DriverUpdates = new HashMap<>();
+        DriverUpdates.put(txt_id.getText(), newDriver);
+        myRef.updateChildrenAsync(DriverUpdates);
+//----------------------------------------------------------------------------------------------------------------        
+        JOptionPane.showMessageDialog(null, "Data Update Succesfully");
+        clear();
         
         
     }//GEN-LAST:event_btn_updateActionPerformed
