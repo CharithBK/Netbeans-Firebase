@@ -44,14 +44,9 @@ public class userDetails extends javax.swing.JFrame {
         }
  
            
-             int timerTimeInMilliSeconds = 1000;
-    javax.swing.Timer timer = new javax.swing.Timer(timerTimeInMilliSeconds, new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
+//         
              loadDrivers();
-        }
-    });
-        timer.start();
+//    
     }
 
     /**
@@ -132,6 +127,11 @@ public class userDetails extends javax.swing.JFrame {
 
         btn_delete.setBackground(new java.awt.Color(255, 255, 255));
         btn_delete.setText("DELETE");
+        btn_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_deleteActionPerformed(evt);
+            }
+        });
 
         btn_update.setBackground(new java.awt.Color(255, 255, 255));
         btn_update.setText("UPDATE");
@@ -171,6 +171,8 @@ public class userDetails extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Telephone");
+
+        txt_id.setEditable(false);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Driver ID");
@@ -297,15 +299,15 @@ public class userDetails extends javax.swing.JFrame {
     
     private void driverJtableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_driverJtableMouseClicked
         clear();
-        DefaultTableModel driver_model = (DefaultTableModel)driverJtable.getModel();
+        DefaultTableModel driver_model = (DefaultTableModel) driverJtable.getModel();
         int rowindex = driverJtable.getSelectedRow();
-        txt_name.setText(driver_model.getValueAt(rowindex,0).toString());
-        txt_nic.setText(driver_model.getValueAt(rowindex,1).toString());
-        txt_address.setText(driver_model.getValueAt(rowindex,2).toString());
-        txt_age.setText(driver_model.getValueAt(rowindex,3).toString());
-        txt_telephone.setText(driver_model.getValueAt(rowindex,4).toString());
-        txt_id.setText(driver_model.getValueAt(rowindex,5).toString());
-        
+        txt_name.setText(driver_model.getValueAt(rowindex, 0).toString());
+        txt_nic.setText(driver_model.getValueAt(rowindex, 1).toString());
+        txt_address.setText(driver_model.getValueAt(rowindex, 2).toString());
+        txt_age.setText(driver_model.getValueAt(rowindex, 3).toString());
+        txt_telephone.setText(driver_model.getValueAt(rowindex, 4).toString());
+        txt_id.setText(driver_model.getValueAt(rowindex, 5).toString());
+
     }//GEN-LAST:event_driverJtableMouseClicked
 
     private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
@@ -313,15 +315,15 @@ public class userDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_clearActionPerformed
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
-        
+
         Driver newDriver = new Driver();
-        
+
         newDriver.setName(txt_name.getText());
         newDriver.setNic(txt_nic.getText());
         newDriver.setAddress(txt_address.getText());
         newDriver.setAge(Integer.parseInt(txt_age.getText()));
         newDriver.setTelephone(Integer.parseInt(txt_telephone.getText()));
-        
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Drivers/DriverDetails");
         Map<String, Object> DriverUpdates = new HashMap<>();
@@ -330,9 +332,45 @@ public class userDetails extends javax.swing.JFrame {
 //----------------------------------------------------------------------------------------------------------------        
         JOptionPane.showMessageDialog(null, "Data Update Succesfully");
         clear();
-        
-        
+
+
     }//GEN-LAST:event_btn_updateActionPerformed
+
+    private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
+
+        // TODO add your handling code here:
+        int result = JOptionPane.showConfirmDialog(null, "Are you sure?", "Do you want to delete", JOptionPane.YES_NO_CANCEL_OPTION);
+        int column = 5;
+        int row = driverJtable.getSelectedRow();
+        String value = driverJtable.getModel().getValueAt(row, column).toString(); //get key value of selected row
+        
+        if (result == 0) {
+            //----------------------------------------------------------------------------------------------------------------        
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef = database.getReference("Drivers/DriverDetails");
+
+            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot ds) {
+                    myRef.child(value).removeValueAsync();
+                }
+                @Override
+                public void onCancelled(DatabaseError de) {
+                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                }
+            });
+//----------------------------------------------------------------------------------------------------------------        
+
+//----------------------------------------------------------------------------------------------------------------        
+            clear();
+            txt_id.setText(null);
+//----------------------------------------------------------------------------------------------------------------        
+            JOptionPane.showMessageDialog(null, "Succesfully Deleted");
+            loadDrivers();
+
+        }
+      
+    }//GEN-LAST:event_btn_deleteActionPerformed
      private void loadDrivers()
     {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
