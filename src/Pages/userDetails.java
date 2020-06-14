@@ -16,6 +16,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,11 +43,7 @@ public class userDetails extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(registration.class.getName()).log(Level.SEVERE, null, ex);
         }
- 
-           
-//         
-             loadDrivers();
-//    
+        loadDrivers();
     }
 
     /**
@@ -78,6 +75,12 @@ public class userDetails extends javax.swing.JFrame {
         txt_telephone = new javax.swing.JTextField();
         txt_id = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        txt_password = new javax.swing.JTextField();
+        txt_username = new javax.swing.JTextField();
+        Date = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txt_date = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,33 +91,33 @@ public class userDetails extends javax.swing.JFrame {
 
         driverJtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "NIC", "Address", "Age", "Telephone", "Id"
+                "Id", "Name", "NIC", "Address", "Age", "Telephone", "Date", "Username", "Password"
             }
         ));
         driverJtable.setGridColor(new java.awt.Color(255, 255, 255));
@@ -177,53 +180,81 @@ public class userDetails extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Driver ID");
 
+        Date.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Date.setText("Date");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel9.setText("Username");
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel10.setText("Password");
+
+        txt_date.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_nic, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_address, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_age, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_telephone, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_name, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(49, 49, 49)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btn_update, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_clear, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_exit, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 830, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(499, 499, 499))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Date, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_date, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txt_nic, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txt_address, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txt_age, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txt_telephone, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txt_name, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txt_username, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(49, 49, 49)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btn_update, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_clear, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_exit, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 829, Short.MAX_VALUE))))
+                .addGap(55, 55, 55))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,7 +262,7 @@ public class userDetails extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -257,13 +288,27 @@ public class userDetails extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_telephone, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(60, 60, 60)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_exit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_clear, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_update, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Date, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_exit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_clear, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_update, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txt_date, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_username, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(46, 46, 46))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -274,7 +319,7 @@ public class userDetails extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -293,6 +338,9 @@ public class userDetails extends javax.swing.JFrame {
         txt_age.setText(null);
         txt_telephone.setText(null);
         txt_id.setText(null);
+        txt_date.setDate(null);
+        txt_username.setText(null);
+        txt_password.setText(null);
               
        
     }
@@ -301,12 +349,18 @@ public class userDetails extends javax.swing.JFrame {
         clear();
         DefaultTableModel driver_model = (DefaultTableModel) driverJtable.getModel();
         int rowindex = driverJtable.getSelectedRow();
-        txt_name.setText(driver_model.getValueAt(rowindex, 0).toString());
-        txt_nic.setText(driver_model.getValueAt(rowindex, 1).toString());
-        txt_address.setText(driver_model.getValueAt(rowindex, 2).toString());
-        txt_age.setText(driver_model.getValueAt(rowindex, 3).toString());
-        txt_telephone.setText(driver_model.getValueAt(rowindex, 4).toString());
-        txt_id.setText(driver_model.getValueAt(rowindex, 5).toString());
+        String Dt = driver_model.getValueAt(rowindex,6).toString();
+        LocalDate cladate = LocalDate.parse(Dt); 
+        java.util.Date date = java.sql.Date.valueOf(cladate);
+        txt_id.setText(driver_model.getValueAt(rowindex, 0).toString());
+        txt_name.setText(driver_model.getValueAt(rowindex, 1).toString());
+        txt_nic.setText(driver_model.getValueAt(rowindex, 2).toString());
+        txt_address.setText(driver_model.getValueAt(rowindex, 3).toString());
+        txt_age.setText(driver_model.getValueAt(rowindex, 4).toString());
+        txt_telephone.setText(driver_model.getValueAt(rowindex, 5).toString());
+        txt_date.setDate(date);
+        txt_username.setText(driver_model.getValueAt(rowindex, 7).toString());
+        txt_password.setText(driver_model.getValueAt(rowindex, 8).toString());
 
     }//GEN-LAST:event_driverJtableMouseClicked
 
@@ -317,12 +371,17 @@ public class userDetails extends javax.swing.JFrame {
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
 
         Driver newDriver = new Driver();
-
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String thedate = dateFormat.format(txt_date.getDate());
+        
         newDriver.setName(txt_name.getText());
         newDriver.setNic(txt_nic.getText());
         newDriver.setAddress(txt_address.getText());
         newDriver.setAge(Integer.parseInt(txt_age.getText()));
         newDriver.setTelephone(Integer.parseInt(txt_telephone.getText()));
+        newDriver.setDate(thedate);
+        newDriver.setUsername(txt_username.getText());
+        newDriver.setPassword(txt_password.getText());
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Drivers/DriverDetails");
@@ -332,6 +391,7 @@ public class userDetails extends javax.swing.JFrame {
 //----------------------------------------------------------------------------------------------------------------        
         JOptionPane.showMessageDialog(null, "Data Update Succesfully");
         clear();
+        loadDrivers();
 
 
     }//GEN-LAST:event_btn_updateActionPerformed
@@ -340,10 +400,10 @@ public class userDetails extends javax.swing.JFrame {
 
         // TODO add your handling code here:
         int result = JOptionPane.showConfirmDialog(null, "Are you sure?", "Do you want to delete", JOptionPane.YES_NO_CANCEL_OPTION);
-        int column = 5;
+        int column = 0;
         int row = driverJtable.getSelectedRow();
         String value = driverJtable.getModel().getValueAt(row, column).toString(); //get key value of selected row
-        
+
         if (result == 0) {
             //----------------------------------------------------------------------------------------------------------------        
             FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -354,6 +414,7 @@ public class userDetails extends javax.swing.JFrame {
                 public void onDataChange(DataSnapshot ds) {
                     myRef.child(value).removeValueAsync();
                 }
+
                 @Override
                 public void onCancelled(DatabaseError de) {
                     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -369,116 +430,92 @@ public class userDetails extends javax.swing.JFrame {
             loadDrivers();
 
         }
-      
+
     }//GEN-LAST:event_btn_deleteActionPerformed
-     private void loadDrivers()
-    {
+    private void loadDrivers() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Drivers/DriverDetails");
         ArrayList<Driver> allDrivers = new ArrayList<Driver>();
-         DefaultTableModel driver_model = (DefaultTableModel)driverJtable.getModel();
-         driver_model.setRowCount(0);
-         Object rowdata[] = new Object[14];
-    
-  
-           myRef.addChildEventListener(new ChildEventListener() {
-                @Override
-                public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
-                   // pat_model.setRowCount(0);
-                    allDrivers.clear();
-                                 
-                    Driver drivers=dataSnapshot.getValue(Driver.class);
-                    //allPatients.add(patients);
-                    drivers.setId(dataSnapshot.getKey());
-                    
-                        rowdata[0] = drivers.getName();
-                        rowdata[1] = drivers.getNic();
-                        rowdata[2] = drivers.getAddress();
-                        rowdata[3] = drivers.getAge();
-                        rowdata[4] = drivers.getTelephone();
-                        rowdata[5] = drivers.getId();
-                        driver_model.addRow(rowdata);
-                        
-                }
+        DefaultTableModel driver_model = (DefaultTableModel) driverJtable.getModel();
+        driver_model.setRowCount(0);
+        Object rowdata[] = new Object[14];
 
-                @Override
-                public void onChildChanged(DataSnapshot dataSnapshot, String prevChildKey) {
-                
-//                    Patient patients=dataSnapshot.getValue(Patient.class);
-//                    //books.setBookID(dataSnapshot.getKey());
-//                    String PID = dataSnapshot.getKey();
-//                        updateTable(PID, patients);
-//                        tableSort();
-                        
-                
-                }
-           
-                @Override
-                public void onChildRemoved(DataSnapshot dataSnapshot) {
-                    
-//                   Patient patients=dataSnapshot.getValue(Patient.class);
-//                
-//                    DeleteRecordTable(dataSnapshot.getKey());
-//                    tableSort();
-                }
+        myRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
+                // pat_model.setRowCount(0);
+                allDrivers.clear();
 
-                @Override
-                public void onChildMoved(DataSnapshot dataSnapshot, String prevChildKey) {}
+                Driver drivers = dataSnapshot.getValue(Driver.class);
+                //allPatients.add(patients);
+                drivers.setId(dataSnapshot.getKey());
+                rowdata[0] = drivers.getId();
+                rowdata[1] = drivers.getName();
+                rowdata[2] = drivers.getNic();
+                rowdata[3] = drivers.getAddress();
+                rowdata[4] = drivers.getAge();
+                rowdata[5] = drivers.getTelephone();
+                rowdata[6] = drivers.getDate();
+                rowdata[7] = drivers.getUsername();
+                rowdata[8] = drivers.getPassword();
+                driver_model.addRow(rowdata);
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {}
-              });
+            }
 
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String prevChildKey) {
+            }
 
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String prevChildKey) {
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
 
 //----------------------------------------------------------------------------------------------------------------        
- 
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                driver_model.setRowCount(0);
+                allDrivers.clear();
+                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
 
-            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                 driver_model.setRowCount(0);
-                 allDrivers.clear();
-                 Iterable<DataSnapshot> children = dataSnapshot.getChildren();
-                
-                  for(DataSnapshot child:children){
-                      Driver drivers=child.getValue(Driver.class);
-                      drivers.setId(child.getKey());
-                      allDrivers.add(drivers); 
-                      //JOptionPane.showMessageDialog(null, child.getKey());
-                      
-                  }
+                for (DataSnapshot child : children) {
+                    Driver drivers = child.getValue(Driver.class);
+                    drivers.setId(child.getKey());
+                    allDrivers.add(drivers);
 
-//----------------------------------------------------------------------------------------------------------------        
-
-                    
-                    
-                    for(int i=0;i<allDrivers.size();i++){
-                       //JOptionPane.showMessageDialog(null, allPatients.get(i).getCurrentMedicine());
-                       //JOptionPane.showMessageDialog(null, allPatients.get(i).getEmail());
-                       //JOptionPane.showMessageDialog(null, allPatients.get(i).getDoctorsNote());
-                       rowdata[0] = allDrivers.get(i).getName();
-                        rowdata[1] = allDrivers.get(i).getNic();
-                        rowdata[2] = allDrivers.get(i).getAddress();
-                        rowdata[3] = allDrivers.get(i).getAge();
-                        rowdata[4] = allDrivers.get(i).getTelephone();
-                        rowdata[5] = allDrivers.get(i).getId();
-                        driver_model.addRow(rowdata);
-                        
-                    }
-                    
-                    
-                   // JOptionPane.showMessageDialog(null, tbl_Mainbooking.getModel().getValueAt(0,6));
-                    allDrivers.clear();
-                    
-                 
                 }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                  System.out.println("The read failed: " + databaseError.getCode());
+                for (int i = 0; i < allDrivers.size(); i++) {
+                    rowdata[0] = allDrivers.get(i).getId();
+                    rowdata[1] = allDrivers.get(i).getName();
+                    rowdata[2] = allDrivers.get(i).getNic();
+                    rowdata[3] = allDrivers.get(i).getAddress();
+                    rowdata[4] = allDrivers.get(i).getAge();
+                    rowdata[5] = allDrivers.get(i).getTelephone();
+                    rowdata[6] = allDrivers.get(i).getDate();
+                    rowdata[7] = allDrivers.get(i).getUsername();
+                    rowdata[8] = allDrivers.get(i).getPassword();
+                    driver_model.addRow(rowdata);
+
                 }
-              });
+                allDrivers.clear();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
 
     }
     
@@ -518,25 +555,31 @@ public class userDetails extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Date;
     private javax.swing.JButton btn_clear;
     private javax.swing.JButton btn_delete;
     private javax.swing.JButton btn_exit;
     private javax.swing.JButton btn_update;
     private javax.swing.JTable driverJtable;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txt_address;
     private javax.swing.JTextField txt_age;
+    private com.toedter.calendar.JDateChooser txt_date;
     private javax.swing.JTextField txt_id;
     private javax.swing.JTextField txt_name;
     private javax.swing.JTextField txt_nic;
+    private javax.swing.JTextField txt_password;
     private javax.swing.JTextField txt_telephone;
+    private javax.swing.JTextField txt_username;
     // End of variables declaration//GEN-END:variables
 }

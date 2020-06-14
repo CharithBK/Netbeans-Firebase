@@ -24,6 +24,33 @@ public class Driver {
     private String address;
     private int age;
     private int telephone;
+    private String date;
+    private String username;
+    private String password;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getName() {
         return name;
@@ -65,13 +92,16 @@ public class Driver {
         this.telephone = telephone;
     }
     
-    public Driver(String name, String nic, String address, int age, int telephone, String id) {
+    public Driver(String name, String nic, String address, int age, int telephone, String id, String date, String username, String password) {
         this.name = name;
         this.id= id;
         this.nic = nic;
         this.address= address;
         this.age = age;
         this.telephone= telephone;
+        this.date= date;
+        this.username= username;
+        this.password= password;
     }
      public Driver() {
     }
