@@ -5,6 +5,19 @@
  */
 package Pages;
 
+import Database.Connection;
+import Drivers.Driver;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Charith
@@ -16,6 +29,11 @@ public class login extends javax.swing.JFrame {
      */
     public login() {
         initComponents();
+        try {
+            Connection.initFirbase();
+        } catch (IOException ex) {
+            Logger.getLogger(registration.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -51,6 +69,11 @@ public class login extends javax.swing.JFrame {
 
         btn_login.setBackground(new java.awt.Color(255, 255, 255));
         btn_login.setText("LOGIN");
+        btn_login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_loginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -104,6 +127,50 @@ public class login extends javax.swing.JFrame {
     private void btn_exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_exitMouseClicked
         System.exit(0);
     }//GEN-LAST:event_btn_exitMouseClicked
+
+    private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
+        String usrN = txt_username.getText();
+        String passN = txt_password.getText();
+        if (txt_username.getText().isEmpty()) {
+              JOptionPane.showMessageDialog(null, "User Name is empty");
+        }
+        if (txt_password.getText().isEmpty()) {
+              JOptionPane.showMessageDialog(null, "Password is empty");
+        } else {
+
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef = database.getReference("Drivers/DriverDetails");
+            ArrayList<Driver> allusers = new ArrayList<Driver>();
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+
+                    for (DataSnapshot child : children) {
+                        Driver drivers = child.getValue(Driver.class);
+                        //allusers.add(usr);  
+                        if (usrN.equals(drivers.getUsername()) && passN.equals(drivers.getPassword())) {
+                            
+                            JOptionPane.showMessageDialog(null, "Login Succesful");
+                            new  userDetails().setVisible(true);
+                                 
+                        } else {
+                            JOptionPane.showMessageDialog(null, "login not succesful");
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    System.out.println("The read failed: " + databaseError.getCode());
+                }
+            });
+
+        }
+    }//GEN-LAST:event_btn_loginActionPerformed
 
     /**
      * @param args the command line arguments
