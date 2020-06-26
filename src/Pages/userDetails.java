@@ -41,11 +41,11 @@ public class userDetails extends javax.swing.JFrame {
      */
     public userDetails() {
         initComponents();
-        try {
-            Connection.initFirbase();
-        } catch (IOException ex) {
-            Logger.getLogger(registration.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            Connection.initFirbase();
+//        } catch (IOException ex) {
+//            Logger.getLogger(registration.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         loadDrivers();
     }
 
@@ -402,7 +402,7 @@ public class userDetails extends javax.swing.JFrame {
                 rowdata[8] = drivers.getPassword();
 
                 if (fromDate.before(date1) && toDate.after(date1)) {
-                    JOptionPane.showMessageDialog(null, date1);
+                    //JOptionPane.showMessageDialog(null, date1);
                     driver_model.addRow(rowdata);
                 }
 

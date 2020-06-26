@@ -31,9 +31,35 @@ public class login extends javax.swing.JFrame {
         initComponents();
         try {
             Connection.initFirbase();
+            dataload();
         } catch (IOException ex) {
             Logger.getLogger(registration.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+     ArrayList<Driver> allusers1= new ArrayList<Driver>();
+     //data load into alluser array list
+    public void dataload(){
+          
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Drivers/DriverDetails");
+        
+         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                  
+                 Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+               
+                  for(DataSnapshot child:children){
+                      Driver usr=child.getValue(Driver.class);
+                      allusers1.add(usr);  
+                      System.out.println(allusers1.size());                 
+                  }                              
+                }                
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                  System.out.println("The read failed: " + databaseError.getCode());
+                }
+              });
     }
 
     /**
@@ -131,45 +157,23 @@ public class login extends javax.swing.JFrame {
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
         String usrN = txt_username.getText();
         String passN = txt_password.getText();
-        if (txt_username.getText().isEmpty()) {
-              JOptionPane.showMessageDialog(null, "User Name is empty");
-        }
-        if (txt_password.getText().isEmpty()) {
-              JOptionPane.showMessageDialog(null, "Password is empty");
-        } else {
-
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference myRef = database.getReference("Drivers/DriverDetails");
-            ArrayList<Driver> allusers = new ArrayList<Driver>();
-
-            myRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-
-                    Iterable<DataSnapshot> children = dataSnapshot.getChildren();
-
-                    for (DataSnapshot child : children) {
-                        Driver drivers = child.getValue(Driver.class);
-                        //allusers.add(usr);  
-                        if (usrN.equals(drivers.getUsername()) && passN.equals(drivers.getPassword())) {
-                            
-                            JOptionPane.showMessageDialog(null, "Login Succesful");
-                            new  userDetails().setVisible(true);
-                                 
-                        } else {
-                            JOptionPane.showMessageDialog(null, "login not succesful");
-                        }
-                    }
-
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    System.out.println("The read failed: " + databaseError.getCode());
-                }
-            });
-
-        }
+        
+       for(int i=0; i< allusers1.size();i++){
+             JOptionPane.showMessageDialog(null, "Done1");
+             JOptionPane.showMessageDialog(null, allusers1.get(i).getUsername());
+             JOptionPane.showMessageDialog(null, allusers1.get(i).getPassword());
+             if(allusers1.get(i).getUsername().equals(usrN) && allusers1.get(i).getPassword().equals(passN)){
+                  JOptionPane.showMessageDialog(null, "Done");
+                   userDetails hm =  new userDetails();
+                    hm.setVisible(true);
+                    this.dispose();
+                    break;
+             }
+             else {
+                 JOptionPane.showMessageDialog(null, "Wrong");
+             }
+         }
+         
     }//GEN-LAST:event_btn_loginActionPerformed
 
     /**
